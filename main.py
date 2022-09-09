@@ -12,6 +12,12 @@ class PokeWarsBOT:
     def __init__(self):
         self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
+    # Handles the browser and UI
+    def main_handler(self):
+        self.driver.get('chrome://settings/')
+        self.driver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.67);')
+        self.driver.get('game url here')
+        
         # Everything for the simplest of simplest UIs below mainly the text boxes to input the location name
         # and how many stamina pots we want to use and the button to run the bot so the user doesn't need to run
         # the code and open a new browser everytime the bot finishes its job.
@@ -30,12 +36,6 @@ class PokeWarsBOT:
         self.enter_drinki = Entry(self.pwbot, width=25, textvariable=self.text_enter_drinki).place(x=32, y=200)
 
         self.pwbot.mainloop()
-
-    # Handles the browser
-    def browser_handler(self):
-        self.driver.get('chrome://settings/')
-        self.driver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.67);')
-        self.driver.get('game url here')
 
     # Function that logs the player in.
     def zaloguj(self):
@@ -99,4 +99,4 @@ class PokeWarsBOT:
 
 
 bot = PokeWarsBOT()
-bot.browser_handler()
+bot.main_handler()
